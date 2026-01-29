@@ -11,12 +11,15 @@ const Contact = () => {
   const [isUsingKeyboard, setIsUsingKeyboard] = useState(false)
   const { playNavigate, playSelect } = useSound()
   const backButtonRef = useRef(null)
+  const cardRefs = useRef([])
 
   useEffect(() => {
     if (isBackButtonSelected && backButtonRef.current) {
       backButtonRef.current.scrollIntoView({ behavior: 'smooth', block: 'center' })
+    } else if (!isBackButtonSelected && cardRefs.current[selectedCardIndex]) {
+      cardRefs.current[selectedCardIndex].scrollIntoView({ behavior: 'smooth', block: 'center' })
     }
-  }, [isBackButtonSelected])
+  }, [isBackButtonSelected, selectedCardIndex])
 
   useEffect(() => {
     const handleKeyDown = (e) => {
@@ -107,6 +110,7 @@ const Contact = () => {
           {contactLinks.map((contact, index) => (
             <a 
               key={index}
+              ref={el => cardRefs.current[index] = el}
               href={contact.link}
               target="_blank"
               rel="noopener noreferrer"

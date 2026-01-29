@@ -11,12 +11,15 @@ const Projects = () => {
   const [isUsingKeyboard, setIsUsingKeyboard] = useState(false)
   const { playNavigate, playSelect } = useSound()
   const backButtonRef = useRef(null)
+  const projectRefs = useRef([])
 
   useEffect(() => {
     if (isBackButtonSelected && backButtonRef.current) {
       backButtonRef.current.scrollIntoView({ behavior: 'smooth', block: 'center' })
+    } else if (!isBackButtonSelected && projectRefs.current[selectedIndex]) {
+      projectRefs.current[selectedIndex].scrollIntoView({ behavior: 'smooth', block: 'center' })
     }
-  }, [isBackButtonSelected])
+  }, [isBackButtonSelected, selectedIndex])
 
   useEffect(() => {
     const handleKeyDown = (e) => {
@@ -151,7 +154,8 @@ const Projects = () => {
       <div className="projects-grid">
         {projects.map((project, index) => (
           <div 
-            key={index} 
+            key={index}
+            ref={el => projectRefs.current[index] = el}
             className={`project-card ${selectedIndex === index && !isBackButtonSelected ? 'selected' : ''}`}
             onMouseEnter={() => {
               if (!isUsingKeyboard) {
