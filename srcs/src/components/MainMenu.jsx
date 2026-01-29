@@ -1,5 +1,5 @@
 import { useNavigate } from 'react-router-dom'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import './MainMenu.css'
 
 const MainMenu = () => {
@@ -9,22 +9,42 @@ const MainMenu = () => {
   const menuItems = [
     { label: 'PROJECTS', path: '/projects' },
     { label: 'ABOUT', path: '/about' },
-    { label: 'EXIT', action: 'exit' }
+    { label: 'CONTACT', path: '/contact' }
   ]
 
-  const handleSelect = (item) => {
-    if (item.action === 'exit') {
-      window.location.href = 'about:blank'
-    } else {
-      navigate(item.path)
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (e.key === 'ArrowUp') {
+        e.preventDefault()
+        setSelectedIndex(prev => prev > 0 ? prev - 1 : menuItems.length - 1)
+      } else if (e.key === 'ArrowDown') {
+        e.preventDefault()
+        setSelectedIndex(prev => prev < menuItems.length - 1 ? prev + 1 : 0)
+      } else if (e.key === 'Enter') {
+        e.preventDefault()
+        handleSelect(menuItems[selectedIndex])
+      }
     }
+
+    window.addEventListener('keydown', handleKeyDown)
+    return () => window.removeEventListener('keydown', handleKeyDown)
+  }, [selectedIndex])
+
+  const handleSelect = (item) => {
+    navigate(item.path)
   }
 
   return (
     <div className="main-menu">
       <div className="logo-container">
-        <img src="/42kocaeli.webp" alt="42 Kocaeli" />
+        <img src="/IMG_6435.png" alt="42 Kocaeli" />
       </div>
+      
+      <div className="logo-container-bottom">
+        <img src="/IMG_6918.png" alt="Portfolio" />
+      </div>
+      
+      <div className="welcome-text">Welcome</div>
       
       <div className="menu-container">
         {menuItems.map((item, index) => (

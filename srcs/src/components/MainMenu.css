@@ -3,10 +3,38 @@
   height: 100vh;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  justify-content: flex-end;
+  align-items: flex-start;
+  padding-left: 5%;
+  padding-bottom: 15%;
   position: relative;
   animation: fadeIn 1s ease-in;
+}
+
+.welcome-text {
+  position: absolute;
+  top: 30px;
+  left: 60px;
+  font-size: 120px;
+  font-family: 'Diploma', sans-serif;
+  color: #ffffff;
+  text-shadow: 
+    4px 4px 0px #000000,
+    8px 8px 0px rgba(0, 0, 0, 0.5),
+    0 0 30px rgba(255, 165, 0, 0.6);
+  animation: slideInLeft 1s ease-out;
+  z-index: 10;
+}
+
+@keyframes slideInLeft {
+  from {
+    transform: translateX(-100px);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
 }
 
 .logo-container {
@@ -81,6 +109,67 @@
   position: relative;
 }
 
+.logo-container-bottom {
+  position: absolute;
+  top: 50vh;
+  right: 0;
+  width: 35vw;
+  height: 50vh;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  animation: slideInRight 1s ease-out 0.3s both;
+  clip-path: polygon(
+    0 0,
+    85% 15%,
+    100% 15%,
+    100% 100%,
+    15% 100%
+  );
+}
+
+.logo-container-bottom::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(225deg, rgba(255, 170, 0, 0.1) 0%, transparent 100%);
+  pointer-events: none;
+}
+
+.logo-container-bottom::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  box-shadow: 
+    inset 0 0 30px rgba(255, 170, 0, 0.2),
+    inset 5px 5px 20px rgba(0, 0, 0, 0.5);
+  pointer-events: none;
+  clip-path: polygon(
+    0 0,
+    85% 15%,
+    100% 15%,
+    100% 100%,
+    15% 100%
+  );
+}
+
+.logo-container-bottom img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: drop-shadow(0 0 20px rgba(255, 170, 0, 0.3));
+  z-index: 1;
+  position: relative;
+}
+
 @keyframes fadeIn {
   from {
     opacity: 0;
@@ -137,6 +226,7 @@
   flex-direction: column;
   gap: 20px;
   animation: slideUp 1s ease-out 0.3s both;
+  align-items: flex-start;
 }
 
 @keyframes slideUp {
@@ -155,12 +245,12 @@
   font-weight: bold;
   letter-spacing: 4px;
   cursor: pointer;
-  padding: 15px 60px;
-  text-align: center;
+  padding: 15px 30px 15px 0;
+  text-align: left;
   transition: all 0.2s ease;
   position: relative;
   text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.8);
-  font-family: 'Diploma', sans-serif;
+  font-family: 'BankGthd', sans-serif;
 }
 
 .menu-item-text {
@@ -255,5 +345,22 @@
   .logo-container {
     width: 50vw;
     height: 40vh;
+  }
+  
+  .logo-container-bottom {
+    width: 50vw;
+    height: 40vh;
+    top: 40vh;
+  }
+  
+  .welcome-text {
+    font-size: 60px;
+    top: 20px;
+    left: 30px;
+  }
+  
+  .main-menu {
+    padding-left: 8%;
+    padding-bottom: 20%;
   }
 }

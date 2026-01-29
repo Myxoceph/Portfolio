@@ -26,7 +26,7 @@
     6px 6px 0px rgba(0, 0, 0, 0.5),
     0 0 20px rgba(255, 165, 0, 0.5);
   margin: 0;
-  font-family: 'Diploma', sans-serif;
+  font-family: 'BankGthd', sans-serif;
 }
 
 .page-subtitle {
@@ -57,12 +57,26 @@
   position: relative;
   transition: all 0.3s ease;
   box-shadow: 0 0 20px rgba(255, 170, 0, 0.3);
+  cursor: pointer;
 }
 
-.project-card:hover {
+.project-emoji {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  font-size: 48px;
+  filter: drop-shadow(0 0 10px rgba(255, 170, 0, 0.5));
+}
+
+.project-card:hover,
+.project-card.selected {
   transform: translateY(-5px);
   border-color: #ffffff;
   box-shadow: 0 0 30px rgba(255, 170, 0, 0.6);
+}
+
+.project-card.selected {
+  background: rgba(255, 170, 0, 0.1);
 }
 
 .project-number {
@@ -79,7 +93,8 @@
   font-size: 32px;
   color: #ffaa00;
   margin-bottom: 15px;
-  font-family: 'Diploma', sans-serif;
+  margin-top: 40px;
+  font-family: 'Pricedown', sans-serif;
   letter-spacing: 2px;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
 }
@@ -89,7 +104,7 @@
   color: #cccccc;
   margin-bottom: 20px;
   line-height: 1.6;
-  font-family: 'Pricedown', sans-serif;
+  font-family: 'BankGthd', sans-serif;
 }
 
 .project-tech {
@@ -98,7 +113,7 @@
   font-style: italic;
   padding-top: 15px;
   border-top: 2px solid rgba(255, 170, 0, 0.3);
-  font-family: 'Beckett', sans-serif;
+  font-family: 'Pricedown', sans-serif;
 }
 
 .back-button {
@@ -117,9 +132,17 @@
   margin-top: 20px;
 }
 
-.back-button:hover {
+.back-button:hover,
+.back-button.selected {
   transform: scale(1.05);
   box-shadow: 0 0 30px rgba(255, 170, 0, 0.8);
+}
+
+.back-button.selected {
+  border-color: #ffaa00;
+  box-shadow: 
+    0 0 30px rgba(255, 170, 0, 0.8),
+    inset 0 0 20px rgba(255, 255, 255, 0.3);
 }
 
 .back-button:active {
