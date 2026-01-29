@@ -35,13 +35,13 @@ const Contact = () => {
     },
     {
       name: 'GITHUB',
-      value: 'myxoceph',
+      value: 'Myxoceph',
       link: 'https://github.com/myxoceph',
       icon: '💻'
     },
     {
       name: 'LINKEDIN',
-      value: 'ahmet-bakircan',
+      value: 'Ahmet BAKIRCAN',
       link: 'https://linkedin.com/in/ahmet-bakircan',
       icon: '💼'
     }
