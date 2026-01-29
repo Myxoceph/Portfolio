@@ -1,10 +1,12 @@
 import { useNavigate } from 'react-router-dom'
 import { useState, useEffect } from 'react'
+import useSound from '../hooks/useSound'
 import './MainMenu.css'
 
 const MainMenu = () => {
   const navigate = useNavigate()
   const [selectedIndex, setSelectedIndex] = useState(0)
+  const { playNavigate, playSelect } = useSound()
   
   const menuItems = [
     { label: 'PROJECTS', path: '/projects' },
@@ -16,19 +18,22 @@ const MainMenu = () => {
     const handleKeyDown = (e) => {
       if (e.key === 'ArrowUp') {
         e.preventDefault()
+        playNavigate()
         setSelectedIndex(prev => prev > 0 ? prev - 1 : menuItems.length - 1)
       } else if (e.key === 'ArrowDown') {
         e.preventDefault()
+        playNavigate()
         setSelectedIndex(prev => prev < menuItems.length - 1 ? prev + 1 : 0)
       } else if (e.key === 'Enter') {
         e.preventDefault()
+        playSelect()
         handleSelect(menuItems[selectedIndex])
       }
     }
 
     window.addEventListener('keydown', handleKeyDown)
     return () => window.removeEventListener('keydown', handleKeyDown)
-  }, [selectedIndex])
+  }, [selectedIndex, playNavigate, playSelect])
 
   const handleSelect = (item) => {
     navigate(item.path)
@@ -51,8 +56,14 @@ const MainMenu = () => {
           <div
             key={index}
             className={`menu-item ${selectedIndex === index ? 'selected' : ''}`}
-            onMouseEnter={() => setSelectedIndex(index)}
-            onClick={() => handleSelect(item)}
+            onMouseEnter={() => {
+              playNavigate()
+              setSelectedIndex(index)
+            }}
+            onClick={() => {
+              playSelect()
+              handleSelect(item)
+            }}
           >
             <span className="menu-item-text">{item.label}</span>
           </div>
