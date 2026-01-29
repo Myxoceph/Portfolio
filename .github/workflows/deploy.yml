@@ -31,19 +31,19 @@ jobs:
           cd srcs
           npm run build
 
-      - name: Setup SSH
-        run: |
-          mkdir -p ~/.ssh
-          echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
-          chmod 600 ~/.ssh/id_rsa
-          ssh-keyscan -p ${{ secrets.SSH_PORT }} -H ${{ secrets.SSH_HOST }} >> ~/.ssh/known_hosts
-
-      - name: Deploy to CPanel
-        run: |
-          cd srcs/dist
-          rsync -avz --delete -e "ssh -p ${{ secrets.SSH_PORT }}" ./ ${{ secrets.SSH_USERNAME }}@${{ secrets.SSH_HOST }}:${{ secrets.DEPLOY_PATH }}
+      - name: Deploy to CPanel via SSH
+        uses: easingthemes/ssh-deploy@main
         env:
-          SSH_AUTH_SOCK: /tmp/ssh_agent.sock
-
-      - name: Deployment Success
-        run: echo "✅ Deployment completed successfully!"
+          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+          REMOTE_HOST: ${{ secrets.SSH_HOST }}
+          REMOTE_USER: ${{ secrets.SSH_USERNAME }}
+          REMOTE_PORT: ${{ secrets.SSH_PORT }}
+          SOURCE: "srcs/dist/"
+          TARGET: ${{ secrets.DEPLOY_PATH }}
+          ARGS: "-avz --delete"
+          SCRIPT_BEFORE: |
+            whoami
+            ls -al
+          SCRIPT_AFTER: |
+            echo "✅ Deployment completed successfully!"
+            ls -al ${{ secrets.DEPLOY_PATH }}
