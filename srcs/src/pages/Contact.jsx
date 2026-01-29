@@ -1,30 +1,75 @@
 import { useNavigate } from 'react-router-dom'
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useRef } from 'react'
+import useSound from '../hooks/useSound'
+import Footer from '../components/Footer'
 import './Contact.css'
 
 const Contact = () => {
   const navigate = useNavigate()
+  const [selectedCardIndex, setSelectedCardIndex] = useState(0)
   const [isBackButtonSelected, setIsBackButtonSelected] = useState(false)
+  const [isUsingKeyboard, setIsUsingKeyboard] = useState(false)
+  const { playNavigate, playSelect } = useSound()
+  const backButtonRef = useRef(null)
+
+  useEffect(() => {
+    if (isBackButtonSelected && backButtonRef.current) {
+      backButtonRef.current.scrollIntoView({ behavior: 'smooth', block: 'center' })
+    }
+  }, [isBackButtonSelected])
 
   useEffect(() => {
     const handleKeyDown = (e) => {
-      if (e.key === 'ArrowDown' || e.key === 'ArrowUp') {
+      if (e.key === 'ArrowDown') {
         e.preventDefault()
-        setIsBackButtonSelected(prev => !prev)
+        setIsUsingKeyboard(true)
+        playNavigate()
+        if (isBackButtonSelected) {
+          setIsBackButtonSelected(false)
+          setSelectedCardIndex(0)
+        } else if (selectedCardIndex < contactLinks.length - 1) {
+          setSelectedCardIndex(prev => prev + 1)
+        } else {
+          setIsBackButtonSelected(true)
+        }
+      } else if (e.key === 'ArrowUp') {
+        e.preventDefault()
+        setIsUsingKeyboard(true)
+        playNavigate()
+        if (isBackButtonSelected) {
+          setIsBackButtonSelected(false)
+          setSelectedCardIndex(contactLinks.length - 1)
+        } else if (selectedCardIndex > 0) {
+          setSelectedCardIndex(prev => prev - 1)
+        } else {
+          setIsBackButtonSelected(true)
+        }
       } else if (e.key === 'Enter') {
         e.preventDefault()
+        playSelect()
         if (isBackButtonSelected) {
           navigate('/')
+        } else {
+          window.open(contactLinks[selectedCardIndex].link, '_blank')
         }
       } else if (e.key === 'Escape') {
         e.preventDefault()
+        playSelect()
         navigate('/')
       }
     }
 
+    const handleMouseMove = () => {
+      setIsUsingKeyboard(false)
+    }
+
     window.addEventListener('keydown', handleKeyDown)
-    return () => window.removeEventListener('keydown', handleKeyDown)
-  }, [isBackButtonSelected, navigate])
+    window.addEventListener('mousemove', handleMouseMove)
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown)
+      window.removeEventListener('mousemove', handleMouseMove)
+    }
+  }, [isBackButtonSelected, selectedCardIndex, navigate, playNavigate, playSelect])
 
   const contactLinks = [
     {
@@ -65,7 +110,19 @@ const Contact = () => {
               href={contact.link}
               target="_blank"
               rel="noopener noreferrer"
-              className="contact-card"
+              className={`contact-card ${selectedCardIndex === index && !isBackButtonSelected ? 'selected' : ''}`}
+              onMouseEnter={() => {
+                if (!isUsingKeyboard) {
+                  playNavigate()
+                  setSelectedCardIndex(index)
+                  setIsBackButtonSelected(false)
+                }
+              }}
+              onClick={(e) => {
+                e.preventDefault()
+                playSelect()
+                window.open(contact.link, '_blank')
+              }}
             >
               <div className="contact-icon">{contact.icon}</div>
               <div className="contact-info">
@@ -78,13 +135,24 @@ const Contact = () => {
       </div>
 
       <button 
+        ref={backButtonRef}
         className={`back-button ${isBackButtonSelected ? 'selected' : ''}`}
-        onClick={() => navigate('/')}
-        onMouseEnter={() => setIsBackButtonSelected(true)}
+        onClick={() => {
+          playSelect()
+          navigate('/')
+        }}
+        onMouseEnter={() => {
+          if (!isUsingKeyboard) {
+            playNavigate()
+            setIsBackButtonSelected(true)
+          }
+        }}
         onMouseLeave={() => setIsBackButtonSelected(false)}
       >
         <span>← BACK TO MENU</span>
       </button>
+
+      <Footer />
     </div>
   )
 }

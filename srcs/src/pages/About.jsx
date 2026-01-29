@@ -1,13 +1,24 @@
 import { useNavigate } from 'react-router-dom'
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
+import useSound from '../hooks/useSound'
+import Footer from '../components/Footer'
 import './About.css'
 
 const About = () => {
   const navigate = useNavigate()
   const [selectedCategory, setSelectedCategory] = useState('WHO I AM')
   const [isBackButtonSelected, setIsBackButtonSelected] = useState(false)
+  const [isUsingKeyboard, setIsUsingKeyboard] = useState(false)
+  const { playNavigate, playSelect } = useSound()
+  const backButtonRef = useRef(null)
 
   const categoryOrder = ['WHO I AM', 'MY STORY', '42', 'SKILLS']
+
+  useEffect(() => {
+    if (isBackButtonSelected && backButtonRef.current) {
+      backButtonRef.current.scrollIntoView({ behavior: 'smooth', block: 'center' })
+    }
+  }, [isBackButtonSelected])
 
   useEffect(() => {
     const handleKeyDown = (e) => {
@@ -15,6 +26,8 @@ const About = () => {
       
       if (e.key === 'ArrowUp') {
         e.preventDefault()
+        setIsUsingKeyboard(true)
+        playNavigate()
         if (isBackButtonSelected) {
           setIsBackButtonSelected(false)
           setSelectedCategory(categoryOrder[categoryOrder.length - 1])
@@ -24,6 +37,8 @@ const About = () => {
         }
       } else if (e.key === 'ArrowDown') {
         e.preventDefault()
+        setIsUsingKeyboard(true)
+        playNavigate()
         if (isBackButtonSelected) {
           setIsBackButtonSelected(false)
           setSelectedCategory(categoryOrder[0])
@@ -37,18 +52,28 @@ const About = () => {
         }
       } else if (e.key === 'Enter') {
         e.preventDefault()
+        playSelect()
         if (isBackButtonSelected) {
           navigate('/')
         }
       } else if (e.key === 'Escape') {
         e.preventDefault()
+        playSelect()
         navigate('/')
       }
     }
 
+    const handleMouseMove = () => {
+      setIsUsingKeyboard(false)
+    }
+
     window.addEventListener('keydown', handleKeyDown)
-    return () => window.removeEventListener('keydown', handleKeyDown)
-  }, [selectedCategory, isBackButtonSelected, navigate])
+    window.addEventListener('mousemove', handleMouseMove)
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown)
+      window.removeEventListener('mousemove', handleMouseMove)
+    }
+  }, [selectedCategory, isBackButtonSelected, navigate, playNavigate, playSelect])
 
   const categories = {
     'WHO I AM': {
@@ -119,8 +144,14 @@ const About = () => {
           {categoryOrder.map((category, index) => (
             <div
               key={index}
-              className={`stats-menu-item ${selectedCategory === category ? 'active' : ''}`}
-              onMouseEnter={() => setSelectedCategory(category)}
+              className={`stats-menu-item ${selectedCategory === category && !isBackButtonSelected ? 'active' : ''}`}
+              onMouseEnter={() => {
+                if (!isUsingKeyboard) {
+                  playNavigate()
+                  setSelectedCategory(category)
+                  setIsBackButtonSelected(false)
+                }
+              }}
             >
               {category}
             </div>
@@ -203,13 +234,24 @@ const About = () => {
       </div>
 
       <button 
+        ref={backButtonRef}
         className={`back-button ${isBackButtonSelected ? 'selected' : ''}`}
-        onClick={() => navigate('/')}
-        onMouseEnter={() => setIsBackButtonSelected(true)}
+        onClick={() => {
+          playSelect()
+          navigate('/')
+        }}
+        onMouseEnter={() => {
+          if (!isUsingKeyboard) {
+            playNavigate()
+            setIsBackButtonSelected(true)
+          }
+        }}
         onMouseLeave={() => setIsBackButtonSelected(false)}
       >
         <span>← BACK TO MENU</span>
       </button>
+
+      <Footer />
     </div>
   )
 }

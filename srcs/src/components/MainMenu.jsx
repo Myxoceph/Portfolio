@@ -1,11 +1,13 @@
 import { useNavigate } from 'react-router-dom'
 import { useState, useEffect } from 'react'
 import useSound from '../hooks/useSound'
+import Footer from './Footer'
 import './MainMenu.css'
 
 const MainMenu = () => {
   const navigate = useNavigate()
   const [selectedIndex, setSelectedIndex] = useState(0)
+  const [isUsingKeyboard, setIsUsingKeyboard] = useState(false)
   const { playNavigate, playSelect } = useSound()
   
   const menuItems = [
@@ -18,10 +20,12 @@ const MainMenu = () => {
     const handleKeyDown = (e) => {
       if (e.key === 'ArrowUp') {
         e.preventDefault()
+        setIsUsingKeyboard(true)
         playNavigate()
         setSelectedIndex(prev => prev > 0 ? prev - 1 : menuItems.length - 1)
       } else if (e.key === 'ArrowDown') {
         e.preventDefault()
+        setIsUsingKeyboard(true)
         playNavigate()
         setSelectedIndex(prev => prev < menuItems.length - 1 ? prev + 1 : 0)
       } else if (e.key === 'Enter') {
@@ -31,8 +35,16 @@ const MainMenu = () => {
       }
     }
 
+    const handleMouseMove = () => {
+      setIsUsingKeyboard(false)
+    }
+
     window.addEventListener('keydown', handleKeyDown)
-    return () => window.removeEventListener('keydown', handleKeyDown)
+    window.addEventListener('mousemove', handleMouseMove)
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown)
+      window.removeEventListener('mousemove', handleMouseMove)
+    }
   }, [selectedIndex, playNavigate, playSelect])
 
   const handleSelect = (item) => {
@@ -57,8 +69,10 @@ const MainMenu = () => {
             key={index}
             className={`menu-item ${selectedIndex === index ? 'selected' : ''}`}
             onMouseEnter={() => {
-              playNavigate()
-              setSelectedIndex(index)
+              if (!isUsingKeyboard) {
+                playNavigate()
+                setSelectedIndex(index)
+              }
             }}
             onClick={() => {
               playSelect()
@@ -75,6 +89,8 @@ const MainMenu = () => {
           Press ENTER or Click to Select
         </div>
       </div>
+
+      <Footer />
     </div>
   )
 }

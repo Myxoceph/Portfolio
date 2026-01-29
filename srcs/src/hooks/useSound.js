@@ -1,39 +1,27 @@
 import { useCallback } from 'react'
 
 const useSound = () => {
-  const createBeep = useCallback((frequency, duration = 0.05) => {
+  const playSound = useCallback((soundFile) => {
     try {
-      const audioContext = new (window.AudioContext || window.webkitAudioContext)()
-      const oscillator = audioContext.createOscillator()
-      const gainNode = audioContext.createGain()
-      
-      oscillator.connect(gainNode)
-      gainNode.connect(audioContext.destination)
-      
-      oscillator.frequency.value = frequency
-      oscillator.type = 'sine'
-      
-      gainNode.gain.setValueAtTime(0.1, audioContext.currentTime)
-      gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + duration)
-      
-      oscillator.start(audioContext.currentTime)
-      oscillator.stop(audioContext.currentTime + duration)
+      const audio = new Audio(soundFile)
+      audio.volume = 0.3
+      audio.play().catch(err => console.log('Sound play failed:', err))
     } catch (err) {
       console.log('Sound error:', err)
     }
   }, [])
 
   const playNavigate = useCallback(() => {
-    createBeep(800, 0.05)
-  }, [createBeep])
+    playSound('/sounds/select.mp3')
+  }, [playSound])
 
   const playSelect = useCallback(() => {
-    createBeep(1200, 0.1)
-  }, [createBeep])
+    playSound('/sounds/save.mp3')
+  }, [playSound])
 
   const playBack = useCallback(() => {
-    createBeep(600, 0.08)
-  }, [createBeep])
+    playSound('/sounds/select.mp3')
+  }, [playSound])
 
   return { playNavigate, playSelect, playBack }
 }

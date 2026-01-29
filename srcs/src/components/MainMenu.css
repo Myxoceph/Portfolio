@@ -11,6 +11,13 @@
   animation: fadeIn 1s ease-in;
 }
 
+.main-menu .site-footer {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  margin-top: 0;
+}
+
 .welcome-text {
   position: absolute;
   top: 30px;
@@ -111,7 +118,7 @@
 
 .logo-container-bottom {
   position: absolute;
-  top: 50vh;
+  top: calc(50vh - 50px);
   right: 0;
   width: 35vw;
   height: 50vh;
@@ -298,7 +305,7 @@
 
 .gta-footer {
   position: absolute;
-  bottom: 40px;
+  bottom: 70px;
   left: 0;
   right: 0;
   text-align: center;
