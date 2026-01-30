@@ -164,16 +164,6 @@ const About = () => {
 		{ type: 'skill', name: 'TIME MANAGEMENT & AUTONOMY', value: 88 }
 	]
 	}
-    // 'SKILLS': {
-    //   content: [
-    //     { type: 'skill', name: 'C PROGRAMMING', value: 95 },
-    //     { type: 'skill', name: 'C++', value: 85 },
-    //     { type: 'skill', name: 'ALGORITHMS & DATA STRUCTURES', value: 90 },
-    //     { type: 'skill', name: 'UNIX/LINUX SYSTEMS', value: 88 },
-    //     { type: 'skill', name: 'JAVASCRIPT & REACT', value: 80 },
-    //     { type: 'skill', name: 'SYSTEM PROGRAMMING', value: 92 },
-    //   ]
-    // }
   }
 
   return (
@@ -233,7 +223,6 @@ const About = () => {
                     )
                   }
                   
-                  // Check if line is a section header (starts and ends with --)
                   if (typeof line === 'string' && line.trim().startsWith('--') && line.trim().endsWith('--')) {
                     return (
                       <div
@@ -245,8 +234,6 @@ const About = () => {
                     )
                   }
                   
-                  // Check if line contains a colon (label: value format)
-                  // Only match if it starts with uppercase letters followed by colon (e.g., "NAME:", "ROLE:")
                   if (typeof line === 'string' && /^[A-Z\s]+:/.test(line)) {
                     const colonIndex = line.indexOf(':')
                     const label = line.substring(0, colonIndex + 1)

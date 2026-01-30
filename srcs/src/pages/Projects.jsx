@@ -102,46 +102,67 @@ const Projects = () => {
 
   const projects = [
     {
+      title: 'ft_transcendence',
+      description: 'A full-stack real-time multiplayer Pong game with chat system, user authentication, game history, and friend management. Built as the final project at 42 School.',
+      tech: 'TypeScript • Node.js • Fastify • WebSocket • SQLite',
+      emoji: '🏓',
+      githubUrl: 'https://github.com/Myxoceph/ft_transcendence'
+    },
+    {
+      title: 'PeerFlow',
+      description: '🏆 42 Kocaeli × SUI Hackathon Winner - Decentralized collaboration platform with on-chain messaging, freelance jobs, and project management built on Sui blockchain.',
+      tech: 'React • Sui Blockchain • Move • zkLogin • Walrus',
+      emoji: '🌊',
+      githubUrl: 'https://github.com/Myxoceph/SUI-Hackathon'
+    },
+    {
       title: 'Minishell',
       description: 'A Unix shell implementation in C, recreating bash functionality with pipes, redirections, and built-in commands.',
       tech: 'C • Unix • Bash • System Programming',
       emoji: '🖥️',
-      githubUrl: 'https://github.com/myxoceph'
+      githubUrl: 'https://github.com/Myxoceph/minishell'
     },
     {
       title: 'MiniRT',
       description: 'A raytracer built from scratch in C, rendering 3D scenes with geometric objects, lights, and shadows.',
       tech: 'C • Graphics • Raytracing • 3D',
       emoji: '🎮',
-      githubUrl: 'https://github.com/myxoceph'
+      githubUrl: 'https://github.com/Myxoceph/42miniRT'
     },
     {
       title: 'ft_irc',
       description: 'An IRC (Internet Relay Chat) server written in C++, implementing real-time communication protocols.',
       tech: 'C++ • IRC • Networking • Sockets',
       emoji: '💬',
-      githubUrl: 'https://github.com/myxoceph'
+      githubUrl: 'https://github.com/Myxoceph/ft_irc'
     },
     {
       title: 'Push Swap',
       description: 'An algorithm optimization project: sorting data on a stack with a limited set of instructions.',
       tech: 'C • Algorithms • Optimization',
       emoji: '📊',
-      githubUrl: 'https://github.com/myxoceph'
+      githubUrl: 'https://github.com/Myxoceph/push_swap'
     },
     {
       title: 'Philosophers',
       description: 'Solving the dining philosophers problem using threads and mutexes to understand concurrency.',
       tech: 'C • Threads • Concurrency • Mutexes',
       emoji: '🤖',
-      githubUrl: 'https://github.com/myxoceph'
+      githubUrl: 'https://github.com/Myxoceph/Philosophers'
     },
     {
       title: 'ft_printf',
       description: 'Recreating the famous printf function from the C standard library with variadic functions.',
       tech: 'C • Variadic • String Manipulation',
       emoji: '📝',
-      githubUrl: 'https://github.com/myxoceph'
+      githubUrl: 'https://github.com/Myxoceph/ft_printf'
+    },
+    {
+      title: 'Much More Projects',
+      description: 'Explore all my repositories on GitHub for more projects including C, C++, and various other programming challenges.',
+      tech: 'Visit My GitHub Page',
+      emoji: '➡️',
+      githubUrl: 'https://github.com/Myxoceph'
     }
   ]
 
