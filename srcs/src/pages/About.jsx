@@ -80,8 +80,8 @@ const About = () => {
       content: [
         'NAME: Ahmet BAKIRCAN',
         'ROLE: 42 Kocaeli Student',
-        'LEVEL: Level 6',
-        'PROJECTS COMPLETED: 20',
+        'LEVEL: Level 8 %51',
+        'PROJECTS COMPLETED: 25',
         '',
         'I am a passionate developer currently studying at 42 Kocaeli, where I am learning to tackle complex programming challenges through peer-to-peer learning.',
         '',
@@ -92,25 +92,38 @@ const About = () => {
       content: [
         '-- THE BEGINNING --',
         '',
-        'My fascination with technology started at a young age. While other kids were playing outside, I was captivated by how things worked behind the screen.',
+        'I\'ve been interested in computers for as long as I can remember. My first computer was cheap, slow, and constantly breaking—which turned out to be a gift. Every problem forced me to figure things out on my own. Since most useful answers were in English, I unintentionally trained both my problem-solving skills and my English at the same time.',
         '',
-        'What started as simple troubleshooting evolved into a genuine curiosity about how software is built.',
+        '-- FINDING MY DIRECTION --',
         '',
-        '-- DISCOVERING MY PASSION --',
+        'During high school, my mathematics background was far from strong. Instead of pretending otherwise, I made a pragmatic decision and focused on what I already did well: English. That choice paid off. I ranked highly in the language track of the university entrance exam and earned a place in an English Language Teaching (ELT) program.',
         '',
-        'As I delved deeper into programming, I realized it was more than just a hobby. It was my passion.',
+        '-- QUESTIONING THE PATH --',
         '',
-        'I started with the basics: HTML, CSS, and JavaScript. But I wanted more than just surface-level knowledge.',
+        'As graduation approached, a persistent question surfaced: Did I actually want to do this for the rest of my life?',
+        'I completed my degree, but the doubt didn\'t go away. I knew I needed a different direction—one that aligned better with how my mind worked.',
         '',
-        '-- FINDING ECOLE 42 --',
+        '-- DISCOVERING 42 --',
         '',
-        'That is when I discovered Ecole 42. The concept immediately resonated with me: no teachers, no traditional lectures, just projects and peer-to-peer learning.',
+        'That\'s when I discovered 42 Schools.',
+        'Hearing about it triggered a familiar, almost childlike excitement—the same curiosity I felt years ago sitting in front of a broken computer. I decided to take the risk and applied to 42 Kocaeli, entering with virtually no formal background in software development.',
         '',
-        'The Piscine was one of the most challenging experiences of my life, but I learned more in that month than I had in years of self-study.',
+        'Through peer-to-peer learning, relentless problem-solving, and an intense piscine process, I earned my place in the core program. It felt less like continuing life and more like rebooting it.',
         '',
-        '-- LIFE AT ECOLE 42 --',
+        '-- BUILDING THE FOUNDATION --',
         '',
-        'Since joining Ecole 42, my growth as a developer has accelerated exponentially. Each project pushes me to explore new territories.',
+        'Over nearly two years at 42, I built a solid foundation primarily in C and C++, alongside system programming, Unix/Linux environments, virtual machines, networking, and Docker.',
+        'More importantly, I learned how to learn: how to read documentation effectively, debug under pressure, and reason about systems instead of guessing.',
+        '',
+        '-- STEPPING INTO THE REAL WORLD --',
+        '',
+        'To prove this growth wasn\'t just academic, I stepped into real competition. I joined my first two hackathons—and won both.',
+        '',
+        'The first was the 42 Prague × Škoda AI Skill Coach Hackathon in Prague, Czech Republic. Shortly after returning home, I heard about another event at my campus. Just two days after arriving back in Gebze, I participated in the 42 Kocaeli × SUI Hackathon—and won that as well.',
+        '',
+        '-- WHERE I STAND TODAY --',
+        '',
+        'Today, I continue my path as a software developer adapting to a rapidly changing industry. I don\'t claim to know everything. What I do have is a strong low-level foundation, a systems-oriented mindset, and the discipline to keep learning—without shortcuts, without illusions, and without fear of starting from zero when necessary.',
       ]
     },
     '42': {
@@ -118,19 +131,49 @@ const About = () => {
         { type: 'image', src: '/42kocaeli.webp', alt: '42 Kocaeli' },
         '',
         'The name 42 comes from "The Hitchhiker\'s Guide to the Galaxy" by Douglas Adams, where 42 is humorously presented as the "Answer to the Ultimate Question of Life, the Universe, and Everything." Founded by French entrepreneur Xavier Niel in 2013, 42 schools have 54 campuses in 31 countries with over 21,000+ students worldwide. 42 is not just a place to learn coding; it\'s a community where innovation thrives, collaboration is key, and students are empowered to take charge of their own learning journey. 42 teaches students to write clean, efficient code that adheres to norminette standards, fostering a strong foundation in programming best practices. It also provides students with real-world projects that challenge their skills and encourage creativity. You can learn more about 42 on the official website:',
-        { type: 'link', url: 'https://42.fr/', text: 'https://42.fr/' },
+        { type: 'link', url: 'https://42.fr/', text: 'Here' },
       ]
     },
-    'SKILLS': {
-      content: [
-        { type: 'skill', name: 'C PROGRAMMING', value: 95 },
-        { type: 'skill', name: 'C++', value: 85 },
-        { type: 'skill', name: 'ALGORITHMS & DATA STRUCTURES', value: 90 },
-        { type: 'skill', name: 'UNIX/LINUX SYSTEMS', value: 88 },
-        { type: 'skill', name: 'JAVASCRIPT & REACT', value: 80 },
-        { type: 'skill', name: 'SYSTEM PROGRAMMING', value: 92 },
-      ]
-    }
+	'SKILLS': {
+	content: [
+		{ type: 'skill', name: 'C PROGRAMMING', value: 95 },
+		{ type: 'skill', name: 'C++ PROGRAMMING', value: 90 },
+		{ type: 'skill', name: 'PYTHON PROGRAMMING', value: 40 },
+		{ type: 'skill', name: 'NODE.JS', value: 75 },
+		{ type: 'skill', name: 'FASTIFY', value: 60 },
+		{ type: 'skill', name: 'MOVE', value: 80 },
+		{ type: 'skill', name: 'HTML', value: 70 },
+		{ type: 'skill', name: 'CSS & RESPONSIVE DESIGN', value: 60 },
+		{ type: 'skill', name: 'VIRTUAL MACHINES', value: 75 },
+
+		{ type: 'skill', name: 'UNIX / LINUX COMMANDS & SHELL', value: 88 },
+		{ type: 'skill', name: 'GIT & VERSION CONTROL', value: 85 },
+		{ type: 'skill', name: 'DEBUGGING & BUILD TOOLING', value: 87 },
+		{ type: 'skill', name: 'DOCKER & CONTAINERS', value: 78 },
+
+		{ type: 'skill', name: 'ALGORITHMS & DATA STRUCTURES', value: 90 },
+		{ type: 'skill', name: 'SYSTEM PROGRAMMING (POSIX, PROCESSES)', value: 92 },
+		{ type: 'skill', name: 'NETWORK ARCHITECTURE & SOCKETS', value: 82 },
+		{ type: 'skill', name: 'WEB SERVERS & CLIENT-SERVER BASICS', value: 80 },
+
+		{ type: 'skill', name: 'FULL-STACK BASICS (FRONTEND & BACKEND)', value: 75 },
+		{ type: 'skill', name: 'DATABASE FUNDAMENTALS (SQL/NoSQL)', value: 70 },
+
+		{ type: 'skill', name: 'PROBLEM SOLVING & CRITICAL THINKING', value: 92 },
+		{ type: 'skill', name: 'PEER-TO-PEER LEARNING & COLLABORATION', value: 90 },
+		{ type: 'skill', name: 'TIME MANAGEMENT & AUTONOMY', value: 88 }
+	]
+	}
+    // 'SKILLS': {
+    //   content: [
+    //     { type: 'skill', name: 'C PROGRAMMING', value: 95 },
+    //     { type: 'skill', name: 'C++', value: 85 },
+    //     { type: 'skill', name: 'ALGORITHMS & DATA STRUCTURES', value: 90 },
+    //     { type: 'skill', name: 'UNIX/LINUX SYSTEMS', value: 88 },
+    //     { type: 'skill', name: 'JAVASCRIPT & REACT', value: 80 },
+    //     { type: 'skill', name: 'SYSTEM PROGRAMMING', value: 92 },
+    //   ]
+    // }
   }
 
   return (
