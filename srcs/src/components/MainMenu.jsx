@@ -90,6 +90,10 @@ const MainMenu = () => {
         </div>
       </div>
 
+      <div className="konami-hint">
+        <span>↑ ↑ ↓ ↓ → ← → ←</span>
+      </div>
+
       <Footer />
     </div>
   )
