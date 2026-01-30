@@ -13,6 +13,7 @@ const MainMenu = () => {
   const menuItems = [
     { label: 'PROJECTS', path: '/projects' },
     { label: 'ABOUT', path: '/about' },
+    { label: 'RESUME', path: '/resume' },
     { label: 'CONTACT', path: '/contact' }
   ]
 

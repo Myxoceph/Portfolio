@@ -1,0 +1,152 @@
+.resume-page {
+  justify-content: flex-start;
+}
+
+.resume-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 30px;
+  width: 100%;
+  max-width: 900px;
+  margin-bottom: 40px;
+  animation: slideUp 0.6s ease-out 0.2s both;
+}
+
+.resume-card {
+  background: rgba(0, 0, 0, 0.6);
+  border: 3px solid #ffaa00;
+  border-radius: 8px;
+  padding: 40px 30px;
+  position: relative;
+  transition: all 0.3s ease;
+  box-shadow: 0 0 20px rgba(255, 170, 0, 0.3);
+  cursor: pointer;
+  text-align: center;
+}
+
+.resume-card:hover,
+.resume-card.selected {
+  transform: translateY(-5px);
+  border-color: #ffffff;
+  box-shadow: 0 0 30px rgba(255, 170, 0, 0.6);
+}
+
+.resume-card.selected {
+  background: rgba(255, 170, 0, 0.1);
+}
+
+.resume-flags {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin-bottom: 20px;
+}
+
+.resume-emoji {
+  font-size: 48px;
+  filter: drop-shadow(0 0 10px rgba(255, 170, 0, 0.5));
+}
+
+.resume-flag {
+  font-size: 32px;
+  filter: drop-shadow(0 0 10px rgba(255, 170, 0, 0.5));
+}
+
+.resume-title {
+  font-size: 28px;
+  color: #ffaa00;
+  margin-bottom: 8px;
+  font-family: 'Pricedown', sans-serif;
+  letter-spacing: 2px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+}
+
+.resume-subtitle {
+  font-size: 20px;
+  color: #ffffff;
+  margin-bottom: 15px;
+  font-family: 'BankGthd', sans-serif;
+  letter-spacing: 1px;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
+}
+
+.resume-description {
+  font-size: 16px;
+  color: #cccccc;
+  margin-bottom: 20px;
+  line-height: 1.6;
+  font-family: 'BankGthd', sans-serif;
+}
+
+.resume-download-icon {
+  font-size: 36px;
+  filter: drop-shadow(0 0 10px rgba(255, 170, 0, 0.5));
+  animation: bounce 2s ease-in-out infinite;
+}
+
+@keyframes bounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@media (max-width: 768px) {
+  .page-container {
+    padding: 40px 20px;
+  }
+  
+  .page-header {
+    margin-bottom: 30px;
+  }
+  
+  .page-title {
+    font-size: 50px;
+  }
+  
+  .resume-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+    margin-bottom: 30px;
+  }
+  
+  .resume-card {
+    padding: 30px 20px;
+  }
+  
+  .resume-flags {
+    gap: 10px;
+    margin-bottom: 15px;
+  }
+  
+  .resume-emoji {
+    font-size: 36px;
+  }
+  
+  .resume-flag {
+    font-size: 24px;
+  }
+  
+  .resume-title {
+    font-size: 24px;
+  }
+  
+  .resume-subtitle {
+    font-size: 18px;
+  }
+  
+  .resume-description {
+    font-size: 14px;
+  }
+  
+  .resume-download-icon {
+    font-size: 28px;
+  }
+  
+  .back-button {
+    font-size: 18px;
+    padding: 12px 30px;
+  }
+}
