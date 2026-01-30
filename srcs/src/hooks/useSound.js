@@ -5,9 +5,8 @@ const useSound = () => {
     try {
       const audio = new Audio(soundFile)
       audio.volume = 0.3
-      audio.play().catch(err => console.log('Sound play failed:', err))
+      audio.play().catch(() => {})
     } catch (err) {
-      console.log('Sound error:', err)
     }
   }, [])
 

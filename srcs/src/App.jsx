@@ -40,7 +40,7 @@ function App() {
           audioRef.current = audio
           
           timeoutRef.current = setTimeout(() => {
-            audio.play().catch(err => console.log('Audio play failed:', err))
+            audio.play().catch(() => {})
             timeoutRef.current = null
           }, 100)
           
