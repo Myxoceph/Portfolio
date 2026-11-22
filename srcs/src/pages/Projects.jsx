@@ -9,9 +9,25 @@ const Projects = () => {
   const [selectedIndex, setSelectedIndex] = useState(0)
   const [isBackButtonSelected, setIsBackButtonSelected] = useState(false)
   const [isUsingKeyboard, setIsUsingKeyboard] = useState(false)
-  const { playNavigate, playSelect } = useSound()
+  const { playNavigate, playSelect, playRandomEffect } = useSound()
   const backButtonRef = useRef(null)
   const projectRefs = useRef([])
+  const [noticeIndex, setNoticeIndex] = useState(null)
+  const noticeTimerRef = useRef(null)
+
+  useEffect(() => () => clearTimeout(noticeTimerRef.current), [])
+
+  const activateProject = (project, index) => {
+    if (project.githubUrl) {
+      playSelect()
+      window.open(project.githubUrl, '_blank')
+      return
+    }
+    playRandomEffect()
+    setNoticeIndex(index)
+    clearTimeout(noticeTimerRef.current)
+    noticeTimerRef.current = setTimeout(() => setNoticeIndex(null), 3500)
+  }
 
   useEffect(() => {
     if (isBackButtonSelected && backButtonRef.current) {
@@ -76,14 +92,11 @@ const Projects = () => {
         }
       } else if (e.key === 'Enter') {
         e.preventDefault()
-        playSelect()
         if (isBackButtonSelected) {
+          playSelect()
           navigate('/')
         } else {
-          const selectedProject = projects[selectedIndex]
-          if (selectedProject.githubUrl) {
-            window.open(selectedProject.githubUrl, '_blank')
-          }
+          activateProject(projects[selectedIndex], selectedIndex)
         }
       }
     }
@@ -98,7 +111,7 @@ const Projects = () => {
       window.removeEventListener('keydown', handleKeyDown)
       window.removeEventListener('mousemove', handleMouseMove)
     }
-  }, [navigate, selectedIndex, isBackButtonSelected, playNavigate, playSelect])
+  }, [navigate, selectedIndex, isBackButtonSelected, playNavigate, playSelect, playRandomEffect])
 
   const projects = [
     {
@@ -206,11 +219,14 @@ const Projects = () => {
                 setIsBackButtonSelected(false)
               }
             }}
-            onClick={() => {
-              playSelect()
-              project.githubUrl && window.open(project.githubUrl, '_blank')
-            }}
+            onClick={() => activateProject(project, index)}
           >
+            {noticeIndex === index && (
+              <div className="proprietary-popup" role="status">
+                <div className="proprietary-popup-title">🔒 PROPRIETARY CODE</div>
+                <p>Built for ŠKODA Auto under a private hackathon agreement. The source code is confidential and can't be shared publicly.</p>
+              </div>
+            )}
             <div className="project-emoji">{project.emoji}</div>
             <div className="project-number">#{index + 1}</div>
             <h2 className="project-title">{project.title}</h2>

@@ -1,4 +1,6 @@
-import { useCallback } from 'react'
+import { useCallback, useRef } from 'react'
+
+const EFFECT_COUNT = 23
 
 const useSound = () => {
   const playSound = useCallback((soundFile) => {
@@ -22,7 +24,18 @@ const useSound = () => {
     playSound('/sounds/select.mp3')
   }, [playSound])
 
-  return { playNavigate, playSelect, playBack }
+  const lastEffectRef = useRef(0)
+
+  const playRandomEffect = useCallback(() => {
+    let n
+    do {
+      n = Math.floor(Math.random() * EFFECT_COUNT) + 1
+    } while (n === lastEffectRef.current && EFFECT_COUNT > 1)
+    lastEffectRef.current = n
+    playSound(`/sounds/effects/${n}.mp3`)
+  }, [playSound])
+
+  return { playNavigate, playSelect, playBack, playRandomEffect }
 }
 
 export default useSound
