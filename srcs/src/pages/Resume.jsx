@@ -97,39 +97,39 @@ const Resume = () => {
   const resumes = [
     {
       title: 'English Resume',
-      subtitle: 'With Photo',
-      description: 'Professional resume in English including profile picture.',
-      file: '/resumes/CV_EN_w_photo.pdf',
-      filename: 'Ahmet_Bakircan_CV_EN.pdf',
+      subtitle: 'Standard',
+      description: 'Designed two-column resume in English, best for reading.',
+      file: '/resumes/en/standard/Ahmet_Bakircan_Resume.pdf',
+      filename: 'Ahmet_Bakircan_Resume.pdf',
       emoji: '🇬🇧',
-      flag: '📷'
+      flag: '🎨'
     },
     {
       title: 'English Resume',
-      subtitle: 'Without Photo',
-      description: 'Professional resume in English without profile picture.',
-      file: '/resumes/CV_EN_wo_photo.pdf',
-      filename: 'Ahmet_Bakircan_CV_EN_No_Photo.pdf',
+      subtitle: 'ATS Friendly',
+      description: 'Single-column resume in English, optimized for applicant tracking systems.',
+      file: '/resumes/en/ats/Ahmet_Bakircan_Resume.pdf',
+      filename: 'Ahmet_Bakircan_Resume.pdf',
       emoji: '🇬🇧',
-      flag: '📄'
+      flag: '🤖'
     },
     {
       title: 'Turkish Resume',
-      subtitle: 'With Photo',
-      description: 'Türkçe profesyonel özgeçmiş, fotoğraf içerir.',
-      file: '/resumes/CV_TR_w_photo.pdf',
-      filename: 'Ahmet_Bakircan_CV_TR.pdf',
+      subtitle: 'Standard',
+      description: 'Türkçe, iki sütunlu tasarım özgeçmiş.',
+      file: '/resumes/tr/standard/Ahmet_Bakircan_CV.pdf',
+      filename: 'Ahmet_Bakircan_CV.pdf',
       emoji: '🇹🇷',
-      flag: '📷'
+      flag: '🎨'
     },
     {
       title: 'Turkish Resume',
-      subtitle: 'Without Photo',
-      description: 'Türkçe profesyonel özgeçmiş, fotoğraf içermez.',
-      file: '/resumes/CV_TR_wo_photo.pdf',
-      filename: 'Ahmet_Bakircan_CV_TR_No_Photo.pdf',
+      subtitle: 'ATS Friendly',
+      description: 'Türkçe, tek sütunlu ve ATS (aday takip sistemi) uyumlu özgeçmiş.',
+      file: '/resumes/tr/ats/Ahmet_Bakircan_CV.pdf',
+      filename: 'Ahmet_Bakircan_CV.pdf',
       emoji: '🇹🇷',
-      flag: '📄'
+      flag: '🤖'
     }
   ]
 
