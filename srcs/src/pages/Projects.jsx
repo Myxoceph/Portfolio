@@ -102,11 +102,11 @@ const Projects = () => {
 
   const projects = [
     {
-      title: 'ft_transcendence',
-      description: 'A full-stack real-time multiplayer Pong game with chat system, user authentication, game history, and friend management. Built as the final project at 42 School.',
-      tech: 'TypeScript • Node.js • Fastify • WebSocket • SQLite',
-      emoji: '🏓',
-      githubUrl: 'https://github.com/Myxoceph/ft_transcendence'
+      title: 'ŠKODA AI Skill Coach',
+      description: '🏆 42 Prague × ŠKODA Auto Hackathon Winner - AI talent intelligence platform that turns reactive HR into predictive skill management: team capability analysis, skill risk radar, promotion readiness, career paths, and a 5-year skill forecast. (Private project)',
+      tech: 'React • TypeScript • FastAPI • PostgreSQL • Azure OpenAI • Docker',
+      emoji: '🚗',
+      githubUrl: null
     },
     {
       title: 'PeerFlow',
@@ -114,6 +114,20 @@ const Projects = () => {
       tech: 'React • Sui Blockchain • Move • zkLogin • Walrus',
       emoji: '🌊',
       githubUrl: 'https://github.com/Myxoceph/SUI-Hackathon'
+    },
+    {
+      title: 'Vakıfname',
+      description: '🏆 42 Türkiye × Vakıf Katılım KÖK&KOD Hackathon Winner - Mobile & web app for exploring 770 foundation heritage sites with AR inscription reading, camera-verified visits, an AI guide, and real public-transit routing.',
+      tech: 'TypeScript • Expo • Fastify • Prisma • PostgreSQL • MindAR',
+      emoji: '🕌',
+      githubUrl: 'https://github.com/Myxoceph/RootNCode-Hackathon'
+    },
+    {
+      title: 'ft_transcendence',
+      description: 'A full-stack real-time multiplayer Pong game with chat system, user authentication, game history, and friend management. Built as the final project at 42 School.',
+      tech: 'TypeScript • Node.js • Fastify • WebSocket • SQLite',
+      emoji: '🏓',
+      githubUrl: 'https://github.com/Myxoceph/ft_transcendence'
     },
     {
       title: 'Minishell',
@@ -151,11 +165,18 @@ const Projects = () => {
       githubUrl: 'https://github.com/Myxoceph/Philosophers'
     },
     {
-      title: 'ft_printf',
-      description: 'Recreating the famous printf function from the C standard library with variadic functions.',
-      tech: 'C • Variadic • String Manipulation',
-      emoji: '📝',
-      githubUrl: 'https://github.com/Myxoceph/ft_printf'
+      title: 'Avaj Launcher',
+      description: 'An aircraft weather simulation in Java, built around the Observer, Singleton, and Factory design patterns with scenario file parsing.',
+      tech: 'Java • OOP • Design Patterns',
+      emoji: '✈️',
+      githubUrl: 'https://github.com/Myxoceph/Avaj-Launcher'
+    },
+    {
+      title: 'Libasm',
+      description: 'Reimplementing libc functions (strlen, strcpy, strcmp, strdup, read, write) in x86-64 assembly with proper errno handling.',
+      tech: 'Assembly • NASM • x86-64 • C',
+      emoji: '⚙️',
+      githubUrl: 'https://github.com/Myxoceph/Libasm'
     },
     {
       title: 'Much More Projects',
