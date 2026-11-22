@@ -1,6 +1,7 @@
 import { useNavigate } from 'react-router-dom'
 import { useEffect, useState, useRef } from 'react'
 import useSound from '../hooks/useSound'
+import { getColumnCount, getNextGridIndex } from '../hooks/gridNavigation'
 import Footer from '../components/Footer'
 import './Projects.css'
 
@@ -43,52 +44,26 @@ const Projects = () => {
         e.preventDefault()
         playSelect()
         navigate('/')
-      } else if (e.key === 'ArrowUp') {
+      } else if (['ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight'].includes(e.key)) {
         e.preventDefault()
-        setIsUsingKeyboard(true)
-        playNavigate()
         if (isBackButtonSelected) {
-          setIsBackButtonSelected(false)
-          setSelectedIndex(projects.length - 1)
-        } else {
-          setSelectedIndex(prev => {
-            const newIndex = prev > 0 ? prev - 1 : projects.length - 1
-            return newIndex
-          })
-        }
-      } else if (e.key === 'ArrowDown') {
-        e.preventDefault()
-        setIsUsingKeyboard(true)
-        playNavigate()
-        if (isBackButtonSelected) {
-          setIsBackButtonSelected(false)
-          setSelectedIndex(0)
-        } else {
-          if (selectedIndex === projects.length - 1) {
-            setIsBackButtonSelected(true)
-          } else {
-            setSelectedIndex(prev => prev + 1)
+          if (e.key === 'ArrowUp') {
+            setIsUsingKeyboard(true)
+            playNavigate()
+            setIsBackButtonSelected(false)
+            setSelectedIndex(projects.length - 1)
           }
+          return
         }
-      } else if (e.key === 'ArrowLeft') {
-        e.preventDefault()
-        if (!isBackButtonSelected) {
-          setIsUsingKeyboard(true)
-          playNavigate()
-          setSelectedIndex(prev => {
-            const newIndex = prev >= 3 ? prev - 3 : prev
-            return newIndex
-          })
-        }
-      } else if (e.key === 'ArrowRight') {
-        e.preventDefault()
-        if (!isBackButtonSelected) {
-          setIsUsingKeyboard(true)
-          playNavigate()
-          setSelectedIndex(prev => {
-            const newIndex = prev < projects.length - 3 ? prev + 3 : prev
-            return newIndex
-          })
+        const columns = getColumnCount(projectRefs.current.slice(0, projects.length))
+        const next = getNextGridIndex(e.key, selectedIndex, projects.length, columns)
+        if (next === selectedIndex) return
+        setIsUsingKeyboard(true)
+        playNavigate()
+        if (next === 'back') {
+          setIsBackButtonSelected(true)
+        } else {
+          setSelectedIndex(next)
         }
       } else if (e.key === 'Enter') {
         e.preventDefault()

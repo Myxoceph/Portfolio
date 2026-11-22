@@ -1,6 +1,7 @@
 import { useNavigate } from 'react-router-dom'
 import { useEffect, useState, useRef } from 'react'
 import useSound from '../hooks/useSound'
+import { getColumnCount, getNextGridIndex } from '../hooks/gridNavigation'
 import Footer from '../components/Footer'
 import './Resume.css'
 
@@ -27,43 +28,26 @@ const Resume = () => {
         e.preventDefault()
         playSelect()
         navigate('/')
-      } else if (e.key === 'ArrowUp') {
+      } else if (['ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight'].includes(e.key)) {
         e.preventDefault()
-        setIsUsingKeyboard(true)
-        playNavigate()
         if (isBackButtonSelected) {
-          setIsBackButtonSelected(false)
-          setSelectedIndex(resumes.length - 1)
-        } else {
-          setSelectedIndex(prev => prev > 0 ? prev - 1 : resumes.length - 1)
-        }
-      } else if (e.key === 'ArrowDown') {
-        e.preventDefault()
-        setIsUsingKeyboard(true)
-        playNavigate()
-        if (isBackButtonSelected) {
-          setIsBackButtonSelected(false)
-          setSelectedIndex(0)
-        } else {
-          if (selectedIndex === resumes.length - 1) {
-            setIsBackButtonSelected(true)
-          } else {
-            setSelectedIndex(prev => prev + 1)
+          if (e.key === 'ArrowUp') {
+            setIsUsingKeyboard(true)
+            playNavigate()
+            setIsBackButtonSelected(false)
+            setSelectedIndex(resumes.length - 1)
           }
+          return
         }
-      } else if (e.key === 'ArrowLeft') {
-        e.preventDefault()
-        if (!isBackButtonSelected) {
-          setIsUsingKeyboard(true)
-          playNavigate()
-          setSelectedIndex(prev => prev >= 2 ? prev - 2 : prev)
-        }
-      } else if (e.key === 'ArrowRight') {
-        e.preventDefault()
-        if (!isBackButtonSelected) {
-          setIsUsingKeyboard(true)
-          playNavigate()
-          setSelectedIndex(prev => prev < resumes.length - 2 ? prev + 2 : prev)
+        const columns = getColumnCount(resumeRefs.current.slice(0, resumes.length))
+        const next = getNextGridIndex(e.key, selectedIndex, resumes.length, columns)
+        if (next === selectedIndex) return
+        setIsUsingKeyboard(true)
+        playNavigate()
+        if (next === 'back') {
+          setIsBackButtonSelected(true)
+        } else {
+          setSelectedIndex(next)
         }
       } else if (e.key === 'Enter') {
         e.preventDefault()
